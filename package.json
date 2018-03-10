@@ -1,0 +1,44 @@
+{
+  "name": "promise-performance-tests",
+  "version": "0.0.1",
+  "description": "Promise performance tests",
+  "main": "run.js",
+  "scripts": {
+    "build:doxbee-async-babel": "babel -o build/doxbee-async-babel.js --presets env lib/doxbee-async.js",
+    "build:measure-async-babel": "babel -o build/measure-async-babel.js --presets env lib/measure-async.js",
+    "build:parallel-async-babel": "babel -o build/parallel-async-babel.js --presets env lib/parallel-async.js",
+    "build": "npm run build:doxbee-async-babel && npm run build:measure-async-babel && npm run build:parallel-async-babel && webpack",
+    "postinstall": "npm run build",
+    "precommit": "lint-staged",
+    "start": "node run.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "lib/*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "webpack.config.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "author": {
+    "name": "Benedikt Meurer",
+    "email": "bmeurer@chromium.org",
+    "url": "http://benediktmeurer.de"
+  },
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "regenerator-runtime": "^0.11.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.10.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
+  }
+}
