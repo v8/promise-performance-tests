@@ -12,20 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const fs = require("fs");
-const path = require("path");
+"use strict";
 
-module.exports = fs
-  .readdirSync("src")
-  .filter(filename => filename.endsWith(".js"))
-  .map(filename => ({
-    context: path.resolve("src"),
-    entry: `./${filename}`,
-    output: {
-      filename,
-      path: path.resolve("dist")
-    },
-    optimization: {
-      minimize: false
-    }
-  }));
+const fibonacci = require("../lib/fibonacci-async.js");
+const measure = require("../lib/measure-async.js");
+
+(async () => {
+  try {
+    const time = await measure(fibonacci, 42);
+    console.log(`Time(fibonacci-async-es2017-native): ${time} ms.`);
+  } catch (err) {
+    console.error(err);
+  }
+})();
