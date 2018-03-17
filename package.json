@@ -5,9 +5,10 @@
   "main": "run.js",
   "scripts": {
     "build:doxbee-async-babel": "babel -o build/doxbee-async-babel.js --presets env lib/doxbee-async.js",
+    "build:fibonacci-async-babel": "babel -o build/fibonacci-async-babel.js --plugins transform-async-generator-functions --presets env lib/fibonacci-async.js",
     "build:measure-async-babel": "babel -o build/measure-async-babel.js --presets env lib/measure-async.js",
     "build:parallel-async-babel": "babel -o build/parallel-async-babel.js --presets env lib/parallel-async.js",
-    "build": "npm run build:doxbee-async-babel && npm run build:measure-async-babel && npm run build:parallel-async-babel && webpack",
+    "build": "npm run build:doxbee-async-babel && npm run build:fibonacci-async-babel && npm run build:measure-async-babel && npm run build:parallel-async-babel && webpack",
     "postinstall": "npm run build",
     "precommit": "lint-staged",
     "start": "node run.js",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-async-generator-functions": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "lint-staged": "^7.0.0",
     "prettier": "^1.10.2",
