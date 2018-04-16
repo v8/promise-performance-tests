@@ -14,6 +14,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = fs
   .readdirSync("src")
@@ -27,5 +28,15 @@ module.exports = fs
     },
     optimization: {
       minimize: false
-    }
+    },
+    plugins: [
+      new webpack.BannerPlugin({
+        banner:
+          "// Required for JavaScript engine shells.\n" +
+          "if (typeof console === 'undefined') {\n" +
+          "  console = {log: print};\n" +
+          "}",
+        raw: true
+      })
+    ]
   }));
